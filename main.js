@@ -1,9 +1,9 @@
-const electron = require('electron')
-const path = require('path')
-const url = require('url')
-const {app,BrowserWindow} = electron
+const electron = require('electron');
+const path = require('path');
+const url = require('url');
+const {app,BrowserWindow} = electron;
 
-let ventana
+let ventana;
 
 function createWindow(){
   ventana = new BrowserWindow(
@@ -18,9 +18,12 @@ function createWindow(){
     protocol: 'file',
     slashes: true
   }))
+  // Añadimos el menú una vez creada la ventana
+  require('./menu/menu');
+
   // Herramientas de debuging
-  ventana.webContents.openDevTools()
-}
+  ventana.webContents.openDevTools();
+};
 
 // Exportamos la función y podemos llamarla desde la vista
 exports.openWindow = () => {
@@ -32,6 +35,6 @@ exports.openWindow = () => {
     protocol: 'file',
     slashes: true
   }))
-}
+};
 
-app.on('ready',createWindow)
+app.on('ready', createWindow);

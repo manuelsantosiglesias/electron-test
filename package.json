@@ -1,6 +1,6 @@
 {
   "name": "electron-test",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "Prueba sencilla con electron",
   "main": "main.js",
   "dependencies": {

@@ -9,7 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "electron main.js"
+    "test": "electron main.js",
+    "start": "electron main.js"
   },
   "repository": {
     "type": "git",

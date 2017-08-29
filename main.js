@@ -3,7 +3,24 @@ const path = require('path');
 const url = require('url');
 const {app,BrowserWindow} = electron;
 
+
 let ventana;
+
+// Podemos integrar el programa en el dock de MACOS
+var banderaVentana = 0;// Flag para cuando está en background
+
+// Progress bar mientras se completa la carga
+function onProgress (progess) {
+  ventana.setProgressBar(progress || -1) // Barra de progreso
+}
+
+// Añadimos en el caso de que se cargue
+
+function onDone(){
+  var dock = electron.app.dock; // Para el Dock de MacOS
+  if(!dock||ventana.isFocused()) return
+  banderaVentana++;
+}
 
 function createWindow(){
   ventana = new BrowserWindow(
@@ -36,5 +53,11 @@ exports.openWindow = () => {
     slashes: true
   }))
 };
+
+// Quitamos en el focus
+function onFocus () {
+  banderaVentana = 0
+  dock.setBadge('')
+}
 
 app.on('ready', createWindow);
